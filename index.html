@@ -7,8 +7,12 @@
 <body>
   <h1>Hey look widget</h1>
   <form id="form">
-    <textarea cols="30" rows="100" id="message"></textarea>
-    <button type="submit"></button>
+    <div>
+      <textarea cols="100" rows="30" id="message"></textarea>
+    </div>
+    <div>
+      <button type="submit">Submit</button>
+    </div>
   </form>
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
@@ -32,12 +36,20 @@
       }
 
       // Add event listener to your button
-      document.getElementById('close-account-btn').addEventListener('click', function () {
-        openChatWithPrefilledMessage('Please close my account.');
+      document.getElementById('form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        openChatWithPrefilledMessage(event.target.message.value);
       });
     }
     window.Tawk_API.customStyle = {
-      zIndex: 1000
+      zIndex: 1000,
+      visibility: {
+        desktop: {
+          position: 'bc',
+          xOffset: 30,
+          yOffset: 20,
+        }
+      }
     };
   </script>
 </body>
