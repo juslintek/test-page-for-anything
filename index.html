@@ -14,6 +14,7 @@
       <button type="submit">Submit</button>
     </div>
   </form>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -28,33 +29,32 @@
   </script>
   <!--End of Tawk.to Script-->
   <script>
-    if (window.ChatWidgetAPI) {
-      function openChatWithPrefilledMessage(message) {
-        window.ChatWidgetAPI.open({
-          message: message
-        });
-      }
-
-      // Add event listener to your button
-      document.getElementById('form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        openChatWithPrefilledMessage(event.target.message.value);
-      });
-    }
-
     window.Tawk_API.customStyle = {
       zIndex: 1000,
       backgroundColor: 'green',
       visibility: {
         desktop: {
           position: 'br',
-          xOffset: 10,
+          xOffset: -10,
           yOffset: 10,
         }
       }
     };
-    
-    window.Tawk_API.onChatStarted = function () { console.log(arguments); }
+
+    function openChatWithPrefilledMessage(message) {
+      Tawk_API.start({
+        message: message,
+        showWidget: true,
+      });
+    }
+
+    // Add event listener to your button
+    document.getElementById('form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      openChatWithPrefilledMessage(event.target.message.value);
+    });
+
+    Tawk_API.onChatStarted = function () { console.log(arguments); }
   </script>
 </body>
 
