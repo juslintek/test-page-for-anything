@@ -41,7 +41,7 @@
         openChatWithPrefilledMessage(event.target.message.value);
       });
     }
-    window.Tawk_API.autoStart = false;
+
     window.Tawk_API.customStyle = {
       zIndex: 1000,
       backgroundColor: 'green',
@@ -53,6 +53,8 @@
         }
       }
     };
+    
+    window.Tawk_API.onChatStarted = function () { console.log(arguments); }
   </script>
 </body>
 
