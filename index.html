@@ -68,8 +68,6 @@
         const hash = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
         const phone = '09123456789';
 
-        console.log(hash);
-
         Tawk_API.login({
             hash: hash,
             userId: userId,
