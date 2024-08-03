@@ -17,20 +17,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"
     integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!--Start of Tawk.to Script-->
-  <script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function () {
-      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-      s1.async = true;
-      s1.src = 'https://embed.tawk.to/5e7660a1eec7650c3321b31d/default';
-      s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode.insertBefore(s1, s0);
-    })();
-  </script>
-  <!--End of Tawk.to Script-->
   <script>
+    let Tawk_API = Tawk_API || {};
+    const Tawk_LoadStart = new Date();
+
     Tawk_API.customStyle = {
       zIndex: 1000,
       backgroundColor: 'green',
@@ -58,7 +48,9 @@
       openChatWithPrefilledMessage(event.target.message.value);
     });
 
-    Tawk_API.onChatStarted = function (event) { console.log(arguments); }
+    Tawk_API.onChatStarted = function (event) {
+      console.log(arguments);
+    }
 
     Tawk_API.onLoad = function (event) {
       console.log(arguments);
@@ -71,14 +63,15 @@
       const phone = '09123456789';
 
       Tawk_API.login({
-        hash: hash,    // required
-        userId: userId,            // required
+        hash: hash,
+        userId: userId,
         name: name,
         email: email,
         phone: phone,
       });
     }
   </script>
+  <script async="" src="https://embed.tawk.to/5e7660a1eec7650c3321b31d/default" charset="UTF-8" crossorigin="*"></script>
 </body>
 
 </html>
