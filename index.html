@@ -28,34 +28,8 @@
 </script>
 <!--End of Tawk.to Script-->
 <script>
-    async function hmacSHA256(secretKey, message) {
-        // Encode the secret key and message as Uint8Array
-        const enc = new TextEncoder();
-        const keyData = enc.encode(secretKey);
-        const msgData = enc.encode(message);
-
-        // Import the secret key
-        const cryptoKey = await crypto.subtle.importKey(
-            'raw', // raw format of the key
-            keyData, // key data
-            {name: 'HMAC', hash: {name: 'SHA-256'}}, // algorithm details
-            false, // not extractable (this key cannot be exported)
-            ['sign'] // what this key can do
-        );
-
-        // Sign the message
-        const signature = await crypto.subtle.sign('HMAC', cryptoKey, msgData);
-
-        // Convert the ArrayBuffer to a hex string
-        const hashArray = Array.from(new Uint8Array(signature));
-        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-
-        return hashHex;
-    }
-
     Tawk_API.customStyle = {
         zIndex: 1000,
-        backgroundColor: 'green',
         visibility: {
             desktop: {
                 position: 'br',
@@ -91,7 +65,7 @@
         const email = 'segog64124@almaxen.com';
         const name = 'Biebers Sack'
         const userId = '19d79e36-dc15-4c18-88e8-684a608cffe4';
-        const hash = await hmacSHA256(secretKey, userId);
+        const hash = CryptoJS.hmacSha256(userId, secretKey).toString(CryptoJS.enc.Hex);
         const phone = '09123456789';
 
         console.log(hash);
