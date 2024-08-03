@@ -50,6 +50,7 @@
 
     // Add event listener to your button
     document.getElementById('form').addEventListener('submit', function (event) {
+      console.log(event, event.target.message.value);
       event.preventDefault();
       openChatWithPrefilledMessage(event.target.message.value);
     });
