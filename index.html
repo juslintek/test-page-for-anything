@@ -1,81 +1,112 @@
-<html>
-
+<html lang="en">
 <head>
-  <title>Testing the testing</title>
+    <title>Testing the testing</title>
 </head>
 
 <body>
-  <h1>Hey look widget</h1>
-  <form id="form">
+<h1>Hey look widget</h1>
+<form id="form">
     <div>
-      <textarea cols="100" rows="30" id="message"></textarea>
+        <textarea cols="100" rows="30" id="message"></textarea>
     </div>
     <div>
-      <button type="submit">Submit</button>
+        <button type="submit">Submit</button>
     </div>
-  </form>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"
-    integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script async="" src="https://embed.tawk.to/5e7660a1eec7650c3321b31d/default" charset="UTF-8" crossorigin="*"></script>
-  <script>
-    let Tawk_API = Tawk_API || {};
-    const Tawk_LoadStart = new Date();
+</form>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5e7660a1eec7650c3321b31d/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+<script>
+    async function hmacSHA256(secretKey, message) {
+        // Encode the secret key and message as Uint8Array
+        const enc = new TextEncoder();
+        const keyData = enc.encode(secretKey);
+        const msgData = enc.encode(message);
+
+        // Import the secret key
+        const cryptoKey = await crypto.subtle.importKey(
+            'raw', // raw format of the key
+            keyData, // key data
+            {name: 'HMAC', hash: {name: 'SHA-256'}}, // algorithm details
+            false, // not extractable (this key cannot be exported)
+            ['sign'] // what this key can do
+        );
+
+        // Sign the message
+        const signature = await crypto.subtle.sign('HMAC', cryptoKey, msgData);
+
+        // Convert the ArrayBuffer to a hex string
+        const hashArray = Array.from(new Uint8Array(signature));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+        return hashHex;
+    }
 
     Tawk_API.customStyle = {
-      zIndex: 1000,
-      backgroundColor: 'green',
-      visibility: {
-        desktop: {
-          position: 'br',
-          xOffset: 30,
-          yOffset: 10,
+        zIndex: 1000,
+        backgroundColor: 'green',
+        visibility: {
+            desktop: {
+                position: 'br',
+                xOffset: 30,
+                yOffset: 10,
+            }
         }
-      }
     };
 
     function openChatWithPrefilledMessage(message) {
-      Tawk_API.setAttributes({
-                    'predefinedMessage': message
-                }, function(error){
-                    console.error(error);
-                });
-      Tawk_API.maximize();
+        alert('Opening chat with message: ' + message);
+        Tawk_API.start({
+            message: message
+        });
+        Tawk_API.maximize();
     }
 
     // Add event listener to your button
     document.getElementById('form').addEventListener('submit', function (event) {
-      console.log(this);
-      console.log(event, event.target.message.value);
-      event.preventDefault();
-      openChatWithPrefilledMessage(event.target.message.value);
+        console.log(this);
+        console.log(event, event.target.message.value);
+        event.preventDefault();
+        openChatWithPrefilledMessage(event.target.message.value);
     });
 
     Tawk_API.onChatStarted = function (event) {
-      console.log(this);
-      console.log(arguments);
+        console.log(this);
+        console.log(arguments);
     }
 
-    Tawk_API.onLoad = function (event) {
-      console.log(this);
-      console.log(arguments);
+    Tawk_API.onLoad = async function (event) {
+        console.log(this);
+        console.log(arguments);
 
-      const secretKey = 'dae76add6cb04b35572b1ec609c268d0a5d5617e';
-      const email = 'segog64124@almaxen.com';
-      const name = 'Biebers Sack'
-      const userId = '19d79e36-dc15-4c18-88e8-684a608cffe4';
-      const hash = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
-      const phone = '09123456789';
+        const secretKey = 'dae76add6cb04b35572b1ec609c268d0a5d5617e';
+        const email = 'segog64124@almaxen.com';
+        const name = 'Biebers Sack'
+        const userId = '19d79e36-dc15-4c18-88e8-684a608cffe4';
+        const hash = await hmacSHA256(secretKey, userId);
+        const phone = '09123456789';
 
-      Tawk_API.login({
-        hash: hash,
-        userId: userId,
-        name: name,
-        email: email,
-        phone: phone,
-      });
+        console.log(hash);
+
+        Tawk_API.login({
+            hash: hash,
+            userId: userId,
+            name: name,
+            email: email,
+            phone: phone,
+        });
     }
-  </script>
+</script>
 </body>
 
 </html>
