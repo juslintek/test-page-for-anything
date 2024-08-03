@@ -17,6 +17,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"
     integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script async="" src="https://embed.tawk.to/5e7660a1eec7650c3321b31d/default" charset="UTF-8" crossorigin="*"></script>
   <script>
     let Tawk_API = Tawk_API || {};
     const Tawk_LoadStart = new Date();
@@ -34,25 +35,29 @@
     };
 
     function openChatWithPrefilledMessage(message) {
-      Tawk_API.start({
-        message: message,
-      });
-
+      Tawk_API.setAttributes({
+                    'predefinedMessage': message
+                }, function(error){
+                    console.error(error);
+                });
       Tawk_API.maximize();
     }
 
     // Add event listener to your button
     document.getElementById('form').addEventListener('submit', function (event) {
+      console.log(this);
       console.log(event, event.target.message.value);
       event.preventDefault();
       openChatWithPrefilledMessage(event.target.message.value);
     });
 
     Tawk_API.onChatStarted = function (event) {
+      console.log(this);
       console.log(arguments);
     }
 
     Tawk_API.onLoad = function (event) {
+      console.log(this);
       console.log(arguments);
 
       const secretKey = 'dae76add6cb04b35572b1ec609c268d0a5d5617e';
@@ -71,7 +76,6 @@
       });
     }
   </script>
-  <script async="" src="https://embed.tawk.to/5e7660a1eec7650c3321b31d/default" charset="UTF-8" crossorigin="*"></script>
 </body>
 
 </html>
