@@ -6,32 +6,40 @@
 
 <body>
   <h1>Hey look widget</h1>
-  <form>
-    <textarea id="something">
-
-      </textarea>
+  <form id="form">
+    <textarea cols="30" rows="100" id="message"></textarea>
+    <button type="submit"></button>
   </form>
-  <div>
-    <div id='tawk_5e7660a1eec7650c3321b31d'></div>
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date(); Tawk_API.embedded = 'tawk_5e7660a1eec7650c3321b31d';
-      (function () {
-        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/5e7660a1eec7650c3321b31d/1i49ifekm';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-      })();
-    </script>
-    <!--End of Tawk.to Script-->
-    <script>
-      window.Tawk_API.customStyle = {
-        zIndex: 1000
-      };
-    </script>
-  </div>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/5e7660a1eec7650c3321b31d/default';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+  <script>
+    if (window.ChatWidgetAPI) {
+      function openChatWithPrefilledMessage(message) {
+        window.ChatWidgetAPI.open({
+          message: message
+        });
+      }
+
+      // Add event listener to your button
+      document.getElementById('close-account-btn').addEventListener('click', function () {
+        openChatWithPrefilledMessage('Please close my account.');
+      });
+    }
+    window.Tawk_API.customStyle = {
+      zIndex: 1000
+    };
+  </script>
 </body>
 
 </html>
