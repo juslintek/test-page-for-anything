@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <title>Just Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+<h1>Hey look widget</h1>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5e7660a1eec7650c3321b31d/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+<script>
+    Tawk_API.onChatStarted = function (event) {
+        console.log(this);
+        console.log(arguments);
+    }
+
+    Tawk_API.onLoad = async function (event) {
+        const secretKey = 'dae76add6cb04b35572b1ec609c268d0a5d5617e';
+        const email = 'bumpy-ride@almaxen.com';
+        const name = 'Barbie Doll'
+        const userId = 'e2fe49d3-4edf-476c-a87d-f61c418b9928';
+        const hash = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
+        const phone = '09123456789';
+
+        Tawk_API.login({
+            hash: hash,
+            userId: userId,
+            name: name,
+            email: email,
+            phone: phone,
+            organization: {
+              name: 'Butler',
+            }
+        });
+    }
+</script>
+</body>
+
+</html>
