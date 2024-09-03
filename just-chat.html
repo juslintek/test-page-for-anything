@@ -18,33 +18,31 @@
             s0.parentNode.insertBefore(s1,s0);
         })();
  
-        // Tawk_API.onLoad = function (event) {
-        //     const secretKey = 'dae76add6cb04b35572b1ec609c268d0a5d5617e';
-        //     const email = 'jusys.linas+colorado@gmail.com';
-        //     const name = 'Colorado Sentinelo'
-        //     const userId = '6435d863-443f-4877-8dd1-657d95ea017d';
-        //     const hash = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
-        //     const phone = '09123456789';
-    
-        //     Tawk_API.login({
-        //         hash: hash,
-        //         userId: userId,
-        //         name: name,
-        //         email: email,
-        //         phone: phone,
-        //     });
-    
-        //     Tawk_API.setAttributes({
-        //         organization: {
-        //             name: 'Buttler',
-        //         }
-        //     });
+        const secretKey = 'dae76add6cb04b35572b1ec609c268d0a5d5617e';
+        const email = 'jusys.linas+colorado@gmail.com';
+        const name = 'Colorado Sentinelo'
+        const userId = '6435d863-443f-4877-8dd1-657d95ea017d';
+        const hash = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
+        const phone = '09123456789';
 
-        //     Tawk_API.onChatStarted = function (event) {
-        //         console.log(this);
-        //         console.log(arguments);
-        //     }
-        // }
+        Tawk_API.login({
+            hash: hash,
+            userId: userId,
+            name: name,
+            email: email,
+            phone: phone,
+        });
+
+        Tawk_API.setAttributes({
+            organization: {
+                name: 'Buttler',
+            }
+        });
+
+        Tawk_API.onChatStarted = function (event) {
+            console.log(this);
+            console.log(arguments);
+        }
     </script>
 </body>
 
