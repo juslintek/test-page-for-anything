@@ -8,44 +8,49 @@
 <h1>Hey look widget</h1>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-        const setUpTawkTo = function(event) {
-            const secretKey = 'dae76add6cb04b35572b1ec609c268d0a5d5617e';
-            const email = 'jusys.linas+colorado@gmail.com';
-            const name = 'Colorado Sentinelo'
-            const userId = '6435d863-443f-4877-8dd1-657d95ea017d';
-            const hash = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
-            const phone = '09123456789';
-    
-            window.Tawk_API.login({
-                hash: hash,
-                userId: userId,
-                name: name,
-                email: email,
-                phone: phone,
-            });
-    
-            window.Tawk_API.setAttributes({
-                organization: {
-                    name: 'Buttler',
-                }
-            });
-    
-            window.Tawk_API.onChatStarted = function (event) {
-                console.log(this);
-                console.log(arguments);
-            }
-        }
+        var Tawk_API = Tawk_API || {},
+          Tawk_LoadStart = new Date();
         
-        window.Tawk_API=window.Tawk_API||{}, window.Tawk_LoadStart=new Date();
-        (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/5e7660a1eec7650c3321b31d/default';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s1.onload = setUpTawkTo
-            s0.parentNode.insertBefore(s1,s0);
+        (function () {
+          var s1 = document.createElement("script"),
+            s0 = document.getElementsByTagName("script")[0];
+          s1.async = true;
+          s1.src = "https://embed.tawk.to/5e7660a1eec7650c3321b31d/default";
+          s1.charset = "UTF-8";
+          s1.setAttribute("crossorigin", "*");
+          s0.parentNode.insertBefore(s1, s0);
         })();
+        
+        Tawk_API.onLoad = function (event) {
+          console.log(arguments);
+          const secretKey = "dae76add6cb04b35572b1ec609c268d0a5d5617e";
+          const email = "jusys.linas+colorado@gmail.com";
+          const name = "Colorado Sentinelo";
+          const userId = "6435d863-443f-4877-8dd1-657d95ea017d";
+          const hash = CryptoJS.HmacSHA256(userId, secretKey).toString(
+            CryptoJS.enc.Hex
+          );
+          const phone = "09123456789";
+        
+          Tawk_API.login({
+            hash: hash,
+            userId: userId,
+            name: name,
+            email: email,
+            phone: phone
+          });
+        
+          Tawk_API.setAttributes({
+            organization: {
+              name: "Buttler"
+            }
+          });
+        };
+        
+        Tawk_API.onChatStarted = function (event) {
+          console.log(this);
+          console.log(arguments);
+        };
     </script>
 </body>
 
