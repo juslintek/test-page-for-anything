@@ -27,7 +27,7 @@
 
     Tawk_API.onLoad = async function (event) {
         const secretKey = 'dae76add6cb04b35572b1ec609c268d0a5d5617e';
-        const email = 'bumpy-ride@almaxen.com';
+        const email = 'jusys.linas+barbiedoll@gmail.com';
         const name = 'Barbie Doll'
         const userId = 'e2fe49d3-4edf-476c-a87d-f61c418b9928';
         const hash = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
@@ -39,8 +39,11 @@
             name: name,
             email: email,
             phone: phone,
+        });
+
+        Tawk_API.setAttributes({
             organization: {
-              name: 'Butler',
+                name: 'Buttler',
             }
         });
     }
